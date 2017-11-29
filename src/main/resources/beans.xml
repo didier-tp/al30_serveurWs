@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans.xsd 
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context.xsd                                
+                        http://cxf.apache.org/jaxws 
+                        http://cxf.apache.org/schemas/jaxws.xsd
+                        http://cxf.apache.org/jaxrs 
+                        http://cxf.apache.org/schemas/jaxrs.xsd">
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	 <!-- plus besoin de cxf-extension avec cxf 3 -->
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+
+	<context:annotation-config />
+	<context:component-scan base-package="fr.afcepf.al30" /> 
+	<!-- avec classes prefixées par @Service , @Component , @Repository , ... 
+	     et injections prefixées par @Autowired -->
+	     
+	     
+	<!--  implementor="#idServiceMetierSpringPrefixePar@Service" -->
+	<jaxws:endpoint id="serviceTvaImplEndPoint" 
+	     implementor="#serviceTvaImpl"
+		address="/tva" />
+	<!-- url complete : http://localhost:8080/ + serveurWs/ +services + /tva -->
+		
+</beans>
