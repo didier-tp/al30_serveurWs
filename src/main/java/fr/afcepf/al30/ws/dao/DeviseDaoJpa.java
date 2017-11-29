@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.al30.data.Devise;
+import fr.afcepf.al30.data.Pays;
 
 @Repository //ou @Component
 @Transactional
@@ -41,6 +42,16 @@ public class DeviseDaoJpa implements IDaoDevise {
 	public void deleteDevise(String codeDevise) {
 		Devise d = entityManager.find(Devise.class, codeDevise);
         entityManager.remove(d);
+	}
+
+	@Override
+	public void insertPays(Pays p) {
+		entityManager.persist(p);
+	}
+
+	@Override
+	public List<Pays> allPays() {
+		return entityManager.createQuery("SELECT p FROM Pays p",Pays.class).getResultList();
 	}
 
 }

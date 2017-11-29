@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.al30.data.Devise;
+import fr.afcepf.al30.data.Pays;
 import fr.afcepf.al30.ws.dao.IDaoDevise;
 
 @Service
@@ -27,6 +28,12 @@ public class ServiceDeviseImpl implements IServiceDevise {
 			daoDevise.insertDevise(new Devise("USD",1.0));
 			daoDevise.insertDevise(new Devise("JPY",112.0));
 			daoDevise.insertDevise(new Devise("GBP",0.758));
+		}
+		Devise euro = daoDevise.deviseByCode("EUR");
+		if(daoDevise.allPays().isEmpty()){
+			Pays p1 = new Pays("fr","France",euro);	daoDevise.insertPays(p1);
+			Pays p2 = new Pays("es","Espagne",euro); daoDevise.insertPays(p2);
+			Pays p3 = new Pays("it","Italie",euro);	daoDevise.insertPays(p3);
 		}
 	}
 
@@ -49,7 +56,15 @@ public class ServiceDeviseImpl implements IServiceDevise {
 
 	@Override
 	public List<Devise> rechercherDevisesAvecTauxMax(double tauxMax) {
-		return daoDevise.devisesAvecTauxMaxi(tauxMax);
+		List<Devise> listDev = daoDevise.devisesAvecTauxMaxi(tauxMax);
+		//ok , mais un peu bidouille , il vaut mieux placer @XmlTransient
+		/*
+		for(Devise d : listDev){
+			d.getPays().size(); //appeler ".size()" sur une lazy collection  
+			                    //dans un contexte @Transactional force une remontée immédiate
+			                    //des données de la table vers la mémoire --> plus de lazy exception coté WS ou web
+		}*/
+		return listDev;
 	}
 
 	@Override
