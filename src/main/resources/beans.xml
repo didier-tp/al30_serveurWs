@@ -15,6 +15,7 @@
 	 <!-- plus besoin de cxf-extension avec cxf 3 -->
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 	
+	<import resource="jpaSpringConf.xml" />
 
 	<context:annotation-config />
 	<context:component-scan base-package="fr.afcepf.al30" /> 
@@ -27,5 +28,9 @@
 	     implementor="#serviceTvaImpl"
 		address="/tva" />
 	<!-- url complete : http://localhost:8080/ + serveurWs/ +services + /tva -->
+	
+	<jaxws:endpoint id="serviceDeviseImplEndPoint" 
+	     implementor="#serviceDeviseImpl"
+		address="/devise" />
 		
 </beans>
