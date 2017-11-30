@@ -13,6 +13,16 @@ import fr.afcepf.al30.data.Devise;
 import fr.afcepf.al30.data.Pays;
 import fr.afcepf.al30.ws.dao.IDaoDevise;
 
+/*
+ * NB: Cette classe est à la fois un "business service" Spring invisible
+ * utilisable avec JSF , Soap , REST , ....
+ * et un web service soap du fait de @WebService
+ * ----
+ * Lorsque cette classe sera utilisée en arrière plan par un ws REST,
+ * @WebService sera ignoré (pas utilisé).
+ */
+
+
 @Service
 @WebService(endpointInterface="fr.afcepf.al30.ws.service.IServiceDevise")
 @Transactional

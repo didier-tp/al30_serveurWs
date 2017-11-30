@@ -33,4 +33,17 @@
 	     implementor="#serviceDeviseImpl"
 		address="/devise" />
 		
+	<!-- bean technique utilisé en interne pour convertir java en json et vice versa -->	
+	<bean id='jacksonJsonProvider' class='com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider' />
+		
+	<jaxrs:server id="myRestServices" address="/rest">
+	    <jaxrs:providers>
+	        <ref bean="jacksonJsonProvider" /> <!-- referencement du fournisseur technique java/json -->
+	    </jaxrs:providers>
+	    <jaxrs:serviceBeans>
+	      <ref bean="restServiceDevise" />
+	      <!--  <ref bean="restServiceXy" /> -->
+	   </jaxrs:serviceBeans>
+	</jaxrs:server>	
+		
 </beans>
