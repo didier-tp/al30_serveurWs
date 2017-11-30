@@ -18,5 +18,25 @@
 		<servlet-name>CXFServlet</servlet-name>
 		<url-pattern>/services/*</url-pattern>  <!-- ou autre que services/* -->
 	</servlet-mapping>
+	
+	<!-- NB: Dans cette appli de type TP , deux technologies concurrentes cohabitent
+	     et sont utilisées pour coder des WS REST : CXF/JAX-RS et spring-MVC
+	     Dans un vrai projet d'entreprise : on en choisit qu'une seule  -->
+	
+	<servlet>
+ 		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-class>
+		 org.springframework.web.servlet.DispatcherServlet
+ 		</servlet-class>
+		<init-param>
+ 			<param-name>contextConfigLocation</param-name>
+ 			<param-value></param-value>
+ 		</init-param>
+		 <load-on-startup>1</load-on-startup>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>mvc-dispatcher</servlet-name>
+		<url-pattern>/mvc/*</url-pattern>
+	 </servlet-mapping>
 
 </web-app>

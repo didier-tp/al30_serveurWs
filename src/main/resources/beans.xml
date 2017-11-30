@@ -1,12 +1,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
                         http://www.springframework.org/schema/beans/spring-beans.xsd 
                         http://www.springframework.org/schema/context 
-                        http://www.springframework.org/schema/context/spring-context.xsd                                
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc.xsd                                
                         http://cxf.apache.org/jaxws 
                         http://cxf.apache.org/schemas/jaxws.xsd
                         http://cxf.apache.org/jaxrs 
@@ -14,6 +17,12 @@
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	 <!-- plus besoin de cxf-extension avec cxf 3 -->
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	
+	<!-- NB: Dans cette appli de type TP , deux technologies concurrentes cohabitent
+	     et sont utilisées pour coder des WS REST : CXF/JAX-RS et spring-MVC
+	     Dans un vrai projet d'entreprise : on en choisit qu'une seule  -->
+	 <mvc:annotation-driven /> <!-- pour config Spring-MVC sous forme d'annotation @RestController, @... -->
 	
 	<import resource="jpaSpringConf.xml" />
 

@@ -33,6 +33,23 @@
     <version>4.3.3.RELEASE</version>
 </dependency>
 
+<!-- NB: Dans cette appli de type TP , deux technologies concurrentes cohabitent
+	     et sont utilisées pour coder des WS REST : CXF/JAX-RS et spring-MVC
+	     Dans un vrai projet d'entreprise : on en choisit qu'une seule  -->
+<dependency>
+<groupId>org.springframework</groupId>
+<artifactId>spring-webmvc</artifactId>
+<version>4.3.3.RELEASE</version>
+<scope>compile</scope>
+</dependency>
+
+<dependency>
+ <groupId>com.fasterxml.jackson.core</groupId>
+ <artifactId>jackson-databind</artifactId>
+ <version>2.5.4</version> <!-- to produces json -->
+</dependency>
+
+
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-orm</artifactId>    <version>4.3.3.RELEASE</version>

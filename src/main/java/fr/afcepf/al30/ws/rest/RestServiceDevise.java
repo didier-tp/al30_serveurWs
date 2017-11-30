@@ -3,12 +3,15 @@ package fr.afcepf.al30.ws.rest;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -50,6 +53,19 @@ public class RestServiceDevise {
 	//URL: http://localhost:8080/serveurWs/services/rest/devise/EUR
 	public Devise deviseByCode(@PathParam("code")String codeDevise){
 		return serviceDevise.rechercherDeviseParCode(codeDevise);
+	}
+	
+	@DELETE
+	@Path("/{code}")
+	//URL: http://localhost:8080/serveurWs/services/rest/devise/ms1
+	public Response deleteByCode(@PathParam("code")String codeDevise){
+		try {
+			serviceDevise.supprimerDevise(codeDevise);
+			return Response.status(Status.OK).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build();//ou plus précis si exception plus précise
+		}
 	}
 	
 	@GET
