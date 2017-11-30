@@ -2,7 +2,9 @@ package fr.afcepf.al30.ws.rest;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -26,6 +28,22 @@ public class RestServiceDevise {
 	
 	@Autowired
 	private IServiceDevise serviceDevise; //business service en arrière plan
+	
+	@POST
+	@Path("")
+	//URL: http://localhost:8080/serveurWs/services/rest/devise
+	// avec dans le corps invisible de la requete une jsonString 
+	// de type { "codeDevise" : "ms1" , "tauxChange" : 1.123 }
+	@Consumes("application/json") //pour param en entrée
+	public Devise saveOrUpdateDevise(Devise d){
+		Devise existingDevise = serviceDevise.rechercherDeviseParCode(d.getCodeDevise());
+		if(existingDevise==null){
+			serviceDevise.ajouterDevise(d);
+		}else{
+			serviceDevise.modifierDevise(d);
+		}
+		return d;//converti en JSON via @Produces(...)
+	}
 	
 	@GET
 	@Path("/{code}")

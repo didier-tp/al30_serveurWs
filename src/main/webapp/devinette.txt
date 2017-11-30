@@ -1,0 +1,6 @@
+Devinette:
+=========
+
+SOAP et REST sont sur un bateau.
+SOAP glisse sur un savon et tombe à l'eau.
+Qui est qui reste ?
