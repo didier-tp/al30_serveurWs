@@ -69,7 +69,7 @@ public class RestCtrlDevise {
 	@GetMapping(value="" ) 
 	//URL: http://localhost:8080/serveurWs/mvc/rest/devise
 	//ou bien http://localhost:8080/serveurWs/mvc/rest/devise?tauxMax=2
-	public List<Devise> devisesByCriteria(@RequestParam("tauxMax")Double tauxMax){
+	public List<Devise> devisesByCriteria(@RequestParam(value="tauxMax",required=false)Double tauxMax){
 		if(tauxMax==null)
 		    return serviceDevise.rechercherToutesDevises();
 		else 

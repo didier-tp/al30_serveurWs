@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +32,7 @@ public class Devise {
 	//+get/set , etc
 	@OneToMany(mappedBy="devise")
 	@XmlTransient
-	//@JsonIgnore
+	@JsonIgnore
 	private List<Pays> pays;
 
 	@Override
