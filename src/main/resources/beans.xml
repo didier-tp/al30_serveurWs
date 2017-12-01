@@ -27,6 +27,8 @@
  		<bean class="fr.afcepf.al30.ws.rest.MyMvcInterceptor" />
 	</mvc:interceptors>
 	
+	<bean class="fr.afcepf.spring4.config.MySwaggerConfig" />
+	
 	
 	
 	<import resource="jpaSpringConf.xml" />
