@@ -23,6 +23,11 @@
 	     et sont utilisées pour coder des WS REST : CXF/JAX-RS et spring-MVC
 	     Dans un vrai projet d'entreprise : on en choisit qu'une seule  -->
 	 <mvc:annotation-driven /> <!-- pour config Spring-MVC sous forme d'annotation @RestController, @... -->
+	<mvc:interceptors>
+ 		<bean class="fr.afcepf.al30.ws.rest.MyMvcInterceptor" />
+	</mvc:interceptors>
+	
+	
 	
 	<import resource="jpaSpringConf.xml" />
 
